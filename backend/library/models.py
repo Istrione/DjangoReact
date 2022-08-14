@@ -22,4 +22,8 @@ class Todo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
     update_at = models.DateTimeField(auto_now=True, verbose_name='дата изменения')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
-    is_active = models.BooleanField(default=True, verbose_name='статус')
+    is_active = models.BooleanField(default=True, verbose_name='активно')
+
+    def status_active(self, *args, **kwargs):
+        self.is_active = False
+        self.save()
