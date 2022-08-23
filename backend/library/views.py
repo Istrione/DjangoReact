@@ -1,7 +1,8 @@
 from rest_framework import mixins
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.pagination import LimitOffsetPagination
+
 from .models import User, Project, Todo
 from .serializer import UserModelSerializer, ProjectModelSerializer, TodoModelSerializer
 
