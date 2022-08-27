@@ -1,6 +1,8 @@
 from rest_framework.relations import StringRelatedField
 from rest_framework.serializers import ModelSerializer
+
 from .models import User, Project, Todo
+
 
 class UserModelSerializer(ModelSerializer):
     class Meta:

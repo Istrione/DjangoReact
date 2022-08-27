@@ -9,20 +9,20 @@ class User(AbstractUser):
         return f'{self.username} {self.first_name} {self.last_name}'
 
 class Project(models.Model):
-    name = models.CharField(max_length=64, verbose_name='название проекта')
-    url = models.URLField(max_length=64, verbose_name='ссылка на проект')
+    name = models.CharField(max_length=64)
+    url = models.URLField(max_length=64)
     users = models.ManyToManyField(User)
 
     def __str__(self):
         return f'{self.name}'
 
 class Todo(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, verbose_name='проект')
-    title = models.TextField(verbose_name='текст заметки')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
-    update_at = models.DateTimeField(auto_now=True, verbose_name='дата изменения')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
-    is_active = models.BooleanField(default=True, verbose_name='активно')
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    title = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True,)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
     def status_active(self, *args, **kwargs):
         self.is_active = False
