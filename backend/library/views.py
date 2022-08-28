@@ -23,7 +23,7 @@ GenericViewSet
     queryset = User.objects.all()
 
 class ProjectModelViewSet(ModelViewSet):
-    pagination_class = ProjectLimitOffsetPagination
+    # pagination_class = ProjectLimitOffsetPagination
     serializer_class = ProjectModelSerializer
     queryset = Project.objects.all()
 
@@ -35,7 +35,7 @@ class ProjectModelViewSet(ModelViewSet):
 
 class TodoModelViewSet(ModelViewSet):
 
-    pagination_class = TodoLimitOffsetPagination
+    # pagination_class = TodoLimitOffsetPagination
     serializer_class = TodoModelSerializer
     queryset = Todo.objects.all()
 
