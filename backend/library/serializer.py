@@ -9,6 +9,11 @@ class UserModelSerializer(ModelSerializer):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
 
+class UserModelSerializerSU(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'is_superuser']
+
 class ProjectModelSerializer(ModelSerializer):
     users = StringRelatedField(many=True)
 

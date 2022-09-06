@@ -54,7 +54,7 @@ class App extends React.Component {
     getHeaders() {
         if (this.isAuth()) {
             return {
-                'Authorization' : 'token ' + this.state.token
+                'Authorization' : 'Token ' + this.state.token
             }
         }
         return {}
@@ -108,13 +108,10 @@ class App extends React.Component {
     }
 
     logOut() {
-            let token = localStorage.getItem('token', '')
-        this.setState(
-                    {
-                    'token': ''
-                    },
-                    this.getData
-                )
+        localStorage.setItem('token', '')
+        this.setState({
+            'token': '',
+        }, this.getData)
     }
 
     render() {
