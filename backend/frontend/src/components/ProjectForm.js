@@ -27,14 +27,14 @@ class ProjectForm extends React.Component {
 
         let users = []
 
-        for(option of event.target.selectedOptions) {
+        for(let option of event.target.selectedOptions) {
             users.push(option.value)
         }
         this.setState({
             'users': users
             })
     }
-    }
+
 
     handleSubmit(event) {
         this.props.createProject(this.state.name, this.state.url, this.state.users)
@@ -42,12 +42,12 @@ class ProjectForm extends React.Component {
     }
 
     render() {
-        return (
+        return  (
             <div>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <input type="text" name="name" placeholder="name" value={this.state.name} onChange={(event) => this.handleChange(event)} />
                     <input type="text" name="url" placeholder="url" value={this.state.url} onChange={(event) => this.handleChange(event)} />
-                    <select multiple onChange={(event) => this.handleUsersSelect(event)>
+                    <select multiple onChange={(event) => this.handleUsersSelect(event)}>
                         {this.props.users.map((user) => <option value={user.id}>{user.username} {user.first_name}</option> )}
                     </select>
                     <input type="submit" value="Create" />

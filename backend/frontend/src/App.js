@@ -6,7 +6,7 @@ import TodoList from './components/TodoList.js'
 import LoginForm from './components/LoginForm.js'
 import ProjectForm from './components/ProjectForm.js'
 import TodoForm from './components/TodoForm.js'
-import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
+import {BrowserRouter, Route, Routes, Link, Navigate} from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -28,7 +28,8 @@ class App extends React.Component {
             .delete(`http://localhost:8000/api/projects/${projectId}`,  {headers})
             .then(response => {
                 this.setState({
-               'projects': this.state.projects.filter((project) => project.id != projectId)
+               'projects': this.state.projects.filter((project) => project.id !== projectId)
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -57,7 +58,8 @@ class App extends React.Component {
             .delete(`http://localhost:8000/api/projects/${todoId}`,  {headers})
             .then(response => {
                 this.setState({
-               'todos': this.state.todos.filter((todo) => todo.is_active != true)
+               'todos': this.state.todos.filter((todo) => todo.is_active !== true)
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -197,10 +199,10 @@ class App extends React.Component {
                     </nav>
                     <Routes>
                         <Route exact path='/' element={<UserList users={this.state.users} />} />
-                        <Route exact path='/projects' element={<ProjectList projects={this.state.projects} deleteProject={(projectId) => this.deleteProject(projectId)/>} />
+                        <Route exact path='/projects' element={<ProjectList projects={this.state.projects} deleteProject={(projectId) => this.deleteProject(projectId)} />} />
                         <Route exact path='/create_project' element={<ProjectForm users={this.state.users} createProject={(name, url, users) => this.createProject(name, url, users)}/>} />
                         <Route exact path='/todos' element={<TodoList todos={this.state.todos} />} />
-                        <Route exact path='/create_todo' element={<TodoForm projects={this.state.projects} } />} />
+                        <Route exact path='/create_todo' element={<TodoForm projects={this.state.projects} />} />
                         <Route exact path='/login' element={<LoginForm obtainAuthToken={(login, password) =>  this.obtainAuthToken(login, password)} />} />
                     </Routes>
                 </BrowserRouter>
